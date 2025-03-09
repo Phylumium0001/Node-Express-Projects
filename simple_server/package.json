@@ -1,0 +1,17 @@
+{
+  "name": "simple_server",
+  "version": "1.0.0",
+  "description": "Simple Server to handle different pages",
+  "keywords": [
+    "server",
+    "odin",
+    "project"
+  ],
+  "license": "ISC",
+  "author": "Phylumium",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  }
+}

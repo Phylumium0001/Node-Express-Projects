@@ -1,0 +1,15 @@
+{
+  "name": "express_tutorials",
+  "version": "1.0.0",
+  "description": "Projects on express",
+  "license": "ISC",
+  "author": "Phylumium",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
