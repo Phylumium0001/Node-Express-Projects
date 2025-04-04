@@ -1,43 +1,31 @@
-const express = require('express')
-const fs = require("fs")
+const homeRouter = require("./routes/homeRouter")
+const authorRouter = require("./routes/authorRouter")
+const bookRouter = require("./routes/bookRouter")
 const path = require("path")
 
+const express = require("express")
 const app = express()
+
+//Ejs Setup
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"views"))
+
+// Sets up the body parser
+app.use(express.urlencoded()); 
+
+app.use("/",homeRouter)
+app.use("/authors",authorRouter)
+
+// Uses Ejs
+app.use("/books",bookRouter)
+
+app.use((err,req,res,next)=>{
+    console.error(err);
+    res.status(505).send(err.message)
+    
+})
+
 const PORT = 5000
-
-//app.get("/",(req,res)=>{
-//  res.send("<h1>Home Page</h1>")
-//
-//})
-//app.get("/:username/account",(req,res)=>{
-//  console.log(req.params)
-//})
-
-// Home Route
-app.get("/", (req,res)=>{
-  fs.readFile(
-    path.join(__dirname, "public", "index.html"),
-    ("utf-8"),
-    (err, data)=>{
-      if (err) {throw err;}
-      //res.writeHead(200,{"content-type":"text/html"})
-      res.send(data)
-      res.end()
-    }
-  )
+app.listen(PORT,()=>{
+    console.log(`Server created at ${PORT}`)
 })
-
-app.get("/contact/:id", (req,res)=>{
-  fs.readFile(
-    path.join(__dirname, "public", "contact.html"),
-    ("utf-8"),
-    (err, data)=>{
-      if (err) {throw err;}
-      //res.writeHead(200,{"content-type":"text/html"})
-      console.log(req.params)
-      res.send(data)
-      res.end()
-    }
-  )
-})
-app.listen(PORT,()=>{console.log(`Server started at https://localhost:${PORT}`)})

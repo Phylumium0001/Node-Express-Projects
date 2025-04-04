@@ -1,0 +1,17 @@
+<%-include("../fragments/header") %>
+<main>
+    <h1>Welcome, todays updates: </h1> 
+    <div class="items">
+        <% messages.forEach(message => { %>
+            <div class="item">
+                <a href=<%= message.path %>>
+
+                  <h2><%= message.title %></h2>
+                    <p><%= message.description %></p>  
+                </a>
+                
+            </div>
+        <% }) %>
+    </div>
+</main>
+<%- include('../fragments/footer') %>

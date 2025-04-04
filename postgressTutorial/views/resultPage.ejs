@@ -1,0 +1,19 @@
+<%- include('header') %>
+    <div class="search-results">
+        <table>
+            <th>
+                <td>Id</td>
+                <td>Username</td>
+            </th>
+            <tbody>
+                <% rows.forEach(row => { %>
+                    <tr>
+                        <td><%= row.id %></td>
+                        <td><%= row.username %></td>
+                    </tr>
+                <% }) %> 
+            </tbody>
+                       
+        </table>
+        
+    </div>
