@@ -5,7 +5,18 @@ const editRouter = require('./routers/editRouter');
 const newItemRouter = require('./routers/newItemRouter');
 
 const app = require("express").app()
-// The homepage with all categories and items
+
+// Ejs setup
+app.set("view engine", "ejs")
+
+// Body parser setup
+app.use(express.urlencoded({extended: true}))
+// Css 
+const assetPath = path.join(__dirname, "styles") 
+app.use(express.static(assetPath))
+
+
+// The homepage with all items
 // Handle searches
 app.use("/",homeRouter)
 
