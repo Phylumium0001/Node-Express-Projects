@@ -20,10 +20,10 @@ app.use(express.static(assetPath))
 
 // The homepage with all items
 // Handle searches
-app.use("/",homeRouter)
+app.use("/", homeRouter)
 
 // Shows games only and individual games
-app.use("/games",gameRouter)
+app.use("/games", gameRouter)
 
 // Shows consoles only and individual consoles
 app.use("/consoles",consoleRouter)
@@ -33,6 +33,9 @@ app.use("/edit",editRouter)
 
 // Add new item to the db
 app.use("/new",newItemRouter)
+
+// Seearch Item
+app.use("/search",searchRouter)
 
 
 PORT = 5000
