@@ -29,6 +29,15 @@ async function getConsolesOnly() {
     }
 }
 
+async function searchByName(name) {
+    try {
+        console.log(`Searching for ${name}`);
+        return await pool.query("SELECT * FROM item WHERE namme=$1",[name])
+    } catch (error) {
+        console.error(error);
+        
+    }
+}
 async function addItem(object) {
     try {
         console.log(`Adding ${object.name} to database`)
@@ -65,20 +74,19 @@ async function updateItem(object) {
     }
 }
 
-const obj = {
-    name:"Far cry 5",
-    category_id: 1,
-    price:15.32,
-    quantity:5,
-    platform:"PC",
-    condition:"Used",
-    // For the update
-    id:111
-}
+// const obj = {
+//     name:"Far cry 5",
+//     category_id: 1,
+//     price:15.32,
+//     quantity:5,
+//     platform:"PC",
+//     condition:"Used",
+//     // For the update
+//     id:111
+// }
 
 // addItem(obj)
-updateItem(obj)
-
+// updateItem(obj)
 
 module.exports = {
     getLatestItemsLimited,
