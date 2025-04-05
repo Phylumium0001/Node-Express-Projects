@@ -5,6 +5,7 @@ const gameRouter = require('./routers/gameRouter');
 const consoleRouter = require('./routers/consoleRouter');
 const editRouter = require('./routers/editRouter');
 const newItemRouter = require('./routers/newItemRouter');
+const searchRouter = require("./routers/searchRouter")
 
 const express = require("express")
 const app = express()
@@ -30,6 +31,9 @@ app.use("/consoles",consoleRouter)
 
 // Edit specific item
 app.use("/edit",editRouter)
+
+// Delete Specific
+// app.use("/delete",deleteRoute)
 
 // Add new item to the db
 app.use("/new",newItemRouter)

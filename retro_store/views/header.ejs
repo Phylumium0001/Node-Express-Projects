@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title><%= title %></title>
 </head>
 <body>
+    
     <header>
         <div class="title">
             <h1>Daedalus Forge</h1>
@@ -19,7 +22,10 @@
             </ul>
         </div>
         <div class="searchCont">
-            form
+            <form action="/search" method="get">
+                <input type="search" name="name">
+                <input type="submit" value="">
+            </form>
         </div>
     </header>
     

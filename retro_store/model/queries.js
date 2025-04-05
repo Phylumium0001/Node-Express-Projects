@@ -11,28 +11,30 @@ async function getLatestItemsLimited() {
     }
 }
 
-async function getGamesOnly() {
+async function getGamesOnly(limit=10) {
     try {
         console.log("Getting all games")
-        return await pool.query("SELECT * FROM item WHERE category_id=1")
+        return await pool.query("SELECT * FROM item WHERE category_id=1 ORDER BY id DESC LIMIT $1",[limit])
     } catch (error) {
         console.error(error);        
     }
 }
 
-async function getConsolesOnly() {
+async function getConsolesOnly(limit=10) {
     try {
         console.log("Getting all Consoles");
-        return await pool.query("SELECT * FROM item WHERE category_id=2") 
+        return await pool.query("SELECT * FROM item WHERE category_id=2 ORDER BY id DESC LIMIT $1",[limit]) 
     } catch (error) {
         console.error(error);
     }
 }
 
-async function searchByName(name) {
+async function getByName(name) {
     try {
         console.log(`Searching for ${name}`);
-        return await pool.query("SELECT * FROM item WHERE namme=$1",[name])
+        return await pool.query("SELECT * FROM item WHERE LOWER(name) LIKE $1", [`%${name}%`])
+        
+
     } catch (error) {
         console.error(error);
         
@@ -74,6 +76,7 @@ async function updateItem(object) {
     }
 }
 
+
 // const obj = {
 //     name:"Far cry 5",
 //     category_id: 1,
@@ -87,11 +90,13 @@ async function updateItem(object) {
 
 // addItem(obj)
 // updateItem(obj)
+// getByName("r")
 
 module.exports = {
     getLatestItemsLimited,
     getConsolesOnly,
     getGamesOnly,
     addItem,
-    updateItem
+    updateItem,
+    getByName
 }

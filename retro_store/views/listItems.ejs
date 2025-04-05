@@ -1,12 +1,12 @@
-<%- include('header') %>
-
-<div class="items">
+<h2><%= title %></h2>
+<div class="items-list">
     <% items.forEach(item => { %>
-     <div class="item">
-        <p><%= item.name %></p>
-        <p><%= item.price %></p>
+    <% const val = item.quantity < 3 ? "low-stock item-card" : "item-card"%>
+     <div class="<%=val%>" >
+        <p class="name"><%= item.name %></p>
+        <p class="price">$ <%= item.price %></p>
+        <p class="platform"><%= item.platform %></p>
+        <p class="quantity"><%= item.quantity %></p>
      </div>
     <% }) %>
 </div>
-
-<%- include('footer') %>

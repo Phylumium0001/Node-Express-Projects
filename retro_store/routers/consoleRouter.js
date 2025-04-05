@@ -8,7 +8,7 @@ consoleRouter.get("/",async (req,res)=>{
     try {
         const items = await db.getConsolesOnly()
         const rows = items.rows
-        res.render("listItems", {title:"Consoles", items:rows})
+        res.render("categories", {title:"Consoles", items:rows})
     } catch (error) {
         console.error(`Failed fetching data : ${error}`);
         res.status(500).send("Internal Server Error")

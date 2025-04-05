@@ -1,10 +1,32 @@
 <%- include('header') %>
     <main>
-        <div class="category_rows">
+        <h2>Games</h2>
+        <div class="categories">
+            
+            <!-- Games -->
+             
+            <% games.forEach((game) => { %>
+                <div class="category-card">
+                    <h3><%= game.name %></h3>
+                    <p>Price: $ <%= game.price %></p>
+                    <p>Platform: <%= game.platform %></p>
+                    <p>Condition: <%= game.condition %></p>
+                </div>
+            <% }) %>
             
         </div>
-        <div class="category_rows">
 
+        <h2>Consoles</h2>
+        <div class="categories">
+            <!-- Consoles -->
+            <% consoles.forEach((console) => { %>
+                <div class="category-card">
+                    <h3><%= console.name %></h3>
+                    <p>Price: $ <%= console.price %></p>
+                    <p>Platform: <%= console.platform %></p>
+                    <p>Condition: <%= console.condition %></p>
+                </div>
+            <% }) %>
         </div>
     </main>
 <%- include('footer') %>

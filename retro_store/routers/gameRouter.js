@@ -10,7 +10,7 @@ gameRouter.get("/", async (req, res) => {
         const items = await db.getGamesOnly();
         const rows = items.rows
         console.log(items);
-        res.render("listItems", { items: rows, title: "Games" });
+        res.render("categories", { items: rows, title: "Games" });
     } catch (error) {
         console.error("Error fetching items:", error);
         res.status(500).send("Internal Server Error");
