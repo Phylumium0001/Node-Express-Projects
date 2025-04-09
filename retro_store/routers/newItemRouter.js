@@ -19,6 +19,10 @@ function convertCategoryToId(obj) {
             break;
     }
 }
+const categories ={
+    "game":1,
+    "console":2
+}
 
 newItemRouter.post("/",(req,res)=>{
     console.log(req.body)
@@ -27,11 +31,12 @@ newItemRouter.post("/",(req,res)=>{
 
         const newObj = {
             name:formObj.name,
-            category_id:convertCategoryToId(formObj),
+            category_id:categories[formObj.category],
             price:Number(formObj.price),
             quantity:Number(formObj.quantity),
             platform:formObj.platform,
-            condition:formObj.condition
+            condition:formObj.condition,
+            description : formObj.description
         }
         
         db.addItem(newObj)

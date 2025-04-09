@@ -47,8 +47,11 @@ header {
 }
 
 .links ul li a {
-    color: var(--text-primary);
+    color: var(--accent-green);
     text-decoration: none;
+}
+.links ul li a:hover{
+  color: var(--text-secondary);
 }
 
 .searchCont form {
@@ -203,7 +206,8 @@ button:hover {
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -244,33 +248,68 @@ footer {
 
 
 @media (max-width: 768px) {
-    .categories {
-      grid-template-columns: 1fr;
-    }
-    
-    .form-container {
-      padding: 15px;
-      margin: 15px;
-    }
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .title {
-        margin-bottom: 20px;
-    }
-
-    .links ul {
-        flex-direction: column;
-    }
-
-    .links ul li {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .searchCont {
-        margin-top: 20px;
-    }
+  .categories {
+    grid-template-columns: 1fr;
   }
+  
+  .form-container {
+    padding: 15px;
+    margin: 15px;
+  }
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .title {
+      margin-bottom: 20px;
+  }
+
+  .links ul {
+      flex-direction: column;
+  }
+
+  .links ul li {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+
+  .searchCont {
+      margin-top: 20px;
+  }
+}
+
+
+/* Style for single item view */
+.item {
+  background: var(--card-bg);
+  border: 2px solid var(--accent-purple);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.item h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.item p {
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.item .description {
+  margin-top: 20px;
+}
+
+.item .description h3 {
+  color: var(--text-secondary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+}
+
+.item .description p {
+  color: var(--text-primary);
+}

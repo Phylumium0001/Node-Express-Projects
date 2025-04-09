@@ -3,11 +3,11 @@ const path = require("path")
 const homeRouter = require('./routers/homeRouter');
 const gameRouter = require('./routers/gameRouter');
 const consoleRouter = require('./routers/consoleRouter');
-const editRouter = require('./routers/editRouter');
 const newItemRouter = require('./routers/newItemRouter');
 const searchRouter = require("./routers/searchRouter")
+const updateItemRouter = require("./routers/updateItemRouter");
 
-const express = require("express")
+const express = require("express");
 const app = express()
 
 // Ejs setup
@@ -15,12 +15,13 @@ app.set("view engine", "ejs")
 
 // Body parser setup
 app.use(express.urlencoded({extended: true}))
+
 // Css 
 const assetPath = path.join(__dirname, "styles") 
 app.use(express.static(assetPath))
 
 // The homepage with all items
-// Handle searches
+// Also handles searches
 app.use("/", homeRouter)
 
 // Shows games only and individual games
@@ -30,7 +31,7 @@ app.use("/games", gameRouter)
 app.use("/consoles",consoleRouter)
 
 // Edit specific item
-app.use("/edit",editRouter)
+app.use("/update",updateItemRouter)
 
 // Delete Specific
 // app.use("/delete",deleteRoute)

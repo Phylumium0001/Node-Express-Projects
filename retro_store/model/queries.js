@@ -1,5 +1,18 @@
 const pool = require("./pool")
 
+
+async function getById( id ) {
+    try {
+        console.log(`Getting data on id : ${id}`)
+        const parsedId = parseInt(id);
+        const results = await pool.query("SELECT * FROM item WHERE id=$1",[parsedId])        
+
+        return results
+    } catch (error) {
+        console.error(`Failed to get data : ${error}`);
+    }
+}
+
 // Get 10 latest items
 async function getLatestItemsLimited() {
     try {
@@ -43,13 +56,14 @@ async function getByName(name) {
 async function addItem(object) {
     try {
         console.log(`Adding ${object.name} to database`)
-        await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition) VALUES ($1,$2,$3,$4,$5,$6)",[
+        await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition,description) VALUES ($1,$2,$3,$4,$5,$6)",[
             object.name,
             object.category_id,
             object.price,
             object.quantity,
             object.platform,
-            object.condition
+            object.condition,
+            object.description
         ])
 
     } catch (error) {
@@ -91,6 +105,7 @@ async function updateItem(object) {
 // addItem(obj)
 // updateItem(obj)
 // getByName("r")
+// getById(111)
 
 module.exports = {
     getLatestItemsLimited,
@@ -98,5 +113,6 @@ module.exports = {
     getGamesOnly,
     addItem,
     updateItem,
-    getByName
+    getByName,
+    getById
 }
