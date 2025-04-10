@@ -16,25 +16,30 @@ gameRouter.get("/", async (req, res) => {
 });
 
 gameRouter.get("/:id", async (req, res) => {
-    try {
-        const id = parseInt(req.params.id)
-        console.log(`Fetching item with id ${id}`);
+    const id = (req.params.id)
+    // Check if it is a number
+    const item = await db.getById(id)
+    res.render("itemDisplay",{title:"Game",item:item.rows[0]})
+    
+    // try {
+    //     const id = parseInt(req.params.id)
+    //     console.log(`Fetching item with id ${id}`);
         
-        if (!isNaN(id)){
-            const item = await db.getById(id)
-            // res.send(item.rows)
+    //     if (!isNaN(id)){
+    //         const item = await db.getById(id)
+    //         // res.send(item.rows)
+            
+    //         res.render("itemDisplay",{title:item.name,item:item})
 
-            res.render("itemDisplay",{title:item.name,item:item})
-
-        }else{
-            console.log(`Error : Searching for NaN`);   
-        }
+    //     }else{
+    //         console.log(`Error : Searching for NaN`);   
+    //     }
         
         
-    } catch (error) {
-        console.error("Error fetching item:", error);
-        res.status(500).send("Internal Server Error");
-    }
+    // } catch (error) {
+    //     console.error("Error fetching item:", error);
+    //     res.status(500).send("Internal Server Error");
+    // }
 })
 
 

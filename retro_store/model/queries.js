@@ -3,11 +3,15 @@ const pool = require("./pool")
 
 async function getById( id ) {
     try {
-        console.log(`Getting data on id : ${id}`)
-        const parsedId = parseInt(id);
-        const results = await pool.query("SELECT * FROM item WHERE id=$1",[parsedId])        
+        if (id <0 && id >= 0){
+            console.log(`Getting data on id : ${id}`)
+            const parsedId = parseInt(id);
+            const results = await pool.query("SELECT * FROM item WHERE id=$1",[parsedId])        
+            console.log(results);
 
-        return results
+            return results
+        }
+        
     } catch (error) {
         console.error(`Failed to get data : ${error}`);
     }
@@ -105,7 +109,8 @@ async function updateItem(object) {
 // addItem(obj)
 // updateItem(obj)
 // getByName("r")
-// getById(111)
+    
+// getById(11)
 
 module.exports = {
     getLatestItemsLimited,
