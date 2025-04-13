@@ -8,22 +8,22 @@ newItemRouter.get("/",(req,res)=>{
     res.render("addItem",{title:"Add Item"})
 })
 
-function convertCategoryToId(obj) {
-    switch (obj.category) {
-        case 'game':
-            return 1
-        case 'console':
-            return 2
-                
-        default:
-            break;
-    }
-}
-const categories ={
-    "game":1,
-    "console":2
-}
-
+// function convertCategoryToId(obj) {
+//     switch (obj.category) {
+//         case 'game':
+//             return 1
+//         case 'console':
+//             return 2
+//
+//         default:
+//             break;
+//     }
+// }
+// const categories ={
+//     "game":1,
+//     "console":2
+// }
+//
 newItemRouter.post("/",(req,res)=>{
     console.log(req.body)
     try {
@@ -31,7 +31,7 @@ newItemRouter.post("/",(req,res)=>{
 
         const newObj = {
             name:formObj.name,
-            category_id:categories[formObj.category],
+            category_id:formObj.category,
             price:Number(formObj.price),
             quantity:Number(formObj.quantity),
             platform:formObj.platform,

@@ -6,12 +6,14 @@
             <!-- Games -->
              
             <% games.forEach((game) => { %>
-                <div class="category-card">
+                <a href=<%=game.link%>>
+                  <div class="category-card">
                     <h3><%= game.name %></h3>
                     <p>Price: $ <%= game.price %></p>
                     <p>Platform: <%= game.platform %></p>
                     <p>Condition: <%= game.condition %></p>
-                </div>
+                  </div>
+                </a>
             <% }) %>
             
         </div>
@@ -20,12 +22,14 @@
         <div class="categories">
             <!-- Consoles -->
             <% consoles.forEach((console) => { %>
+              <a href=<%=console.link%>>
                 <div class="category-card">
                     <h3><%= console.name %></h3>
                     <p>Price: $ <%= console.price %></p>
                     <p>Platform: <%= console.platform %></p>
                     <p>Condition: <%= console.condition %></p>
                 </div>
+              </a>
             <% }) %>
         </div>
     </main>

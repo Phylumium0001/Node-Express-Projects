@@ -1,23 +1,19 @@
 <%- include('header') %>
     <div class="form-container">
-        
         <form action="/new" method="post" class="form-container">
-            
+           <h3>New Item</h3> 
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required>
             </div>
             <br>
-            
-            <div class="form-group">
-                <label for="category">Category</label>
-            
-                <input type="radio" name="category" id="game" value="game" checked>
-                <label for="game">Game</label>
 
-                <input type="radio" name="category" id="console" value="console">
-                <label for="console">Console</label>
-                <br>
+           <div class="form-group">
+                <label for="category">Categories</label>
+                <select name="category" id="Categories">
+                    <option value="game">Games</option>
+                    <option value="category">Consoles</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -32,24 +28,40 @@
                 <br>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="platform">Platform</label>
                 <input type="text" name="platform" id="platform">
                 <br> 
-            </div>
-            
+            </div> -->
             <div class="form-group">
+                <label for="platform">Platform</label>
+                <select name="platform" id="platform">
+                    <option value="PC">PC</option>
+                    <option value="X Box">X Box</option>
+                    <option value="PlayStation">PlayStation</option>
+                    <option value="Nintendo">Nintendo</option>
+                </select>
+            </div>
+
+            <!-- <div class="form-group">
                 <label for="condition">Condition</label>
                 <input type="text" name="condition" id="condition">
                 <br>
+            </div>  -->
+            <div class="form-group">
+                <label for="Condition">Condition</label>
+                <select name="condition" id="conditions">
+                    <option value="new">New</option>
+                    <option value="Used">Used</option>
+                </select>
+                </label>
             </div>
             
-            <!-- <label>Condition: 
-                <select name="condition">
-                <option value="New">New</option>
-                <option value="Used">Used</option>
-                </select>
-            </label> -->
+            <!-- Description -->
+             <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" placeholder="Add description"></textarea>
+             </div>
             <input type="submit" value="Add Item">
         </form>
     </div>

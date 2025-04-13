@@ -1,12 +1,14 @@
 <h2><%= title %></h2>
 <div class="items-list">
     <% items.forEach(item => { %>
-    <% const val = item.quantity < 3 ? "low-stock item-card" : "item-card"%>
-     <div class="<%=val%>" >
-        <p class="name"><%= item.name %></p>
-        <p class="price">$ <%= item.price %></p>
-        <p class="platform"><%= item.platform %></p>
-        <p class="quantity"><%= item.quantity %></p>
-     </div>
+      <% const val = item.quantity < 3 ? "low-stock item-card" : "item-card"%>
+      <a href=<%= item.link %>>
+        <div class="<%=val%>" >
+          <p class="name"><%= item.name %></p>
+          <p class="price">$ <%= item.price %></p>
+          <p class="platform"><%= item.platform %></p>
+          <p class="quantity"><%= item.quantity %></p>
+        </div>
+      </a>
     <% }) %>
 </div>

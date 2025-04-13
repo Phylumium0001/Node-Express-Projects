@@ -1,28 +1,18 @@
 <%- include('header') %>
     <div class="form-container">
         <form action="/new" method="post" class="form-container">
-            
+           <h3>New Item</h3> 
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required>
             </div>
             <br>
-            
-            <!-- <div class="form-group">
-                <label for="category">Category</label>
-            
-                <input type="radio" name="category" id="game" value="game" checked>
-                <label for="game">Game</label>
 
-                <input type="radio" name="category" id="console" value="console">
-                <label for="console">Console</label>
-                <br>
-            </div> -->
-            <div class="form-group">
+           <div class="form-group">
                 <label for="category">Categories</label>
                 <select name="category" id="Categories">
-                    <option value="game">Games</option>
-                    <option value="category">Consoles</option>
+                    <option value="1">Games</option>
+                    <option value="2">Consoles</option>
                 </select>
             </div>
 

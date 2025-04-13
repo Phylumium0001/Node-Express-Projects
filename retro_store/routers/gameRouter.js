@@ -1,46 +1,46 @@
-const {Router} = require("express")
-const db = require("../model/queries")
+const { Router } = require("express");
+const db = require("../model/queries");
 
-const gameRouter = Router()
+const gameRouter = Router();
 
 gameRouter.get("/", async (req, res) => {
-    console.log("Games");
-    try {
-        const items = (await db.getGamesOnly()).rows;
-        
-        res.render("categories", { items: items, title: "Games" });
-    } catch (error) {
-        console.error("Error fetching items:", error);
-        res.status(500).send("Internal Server Error");
-    }
+  console.log("Games");
+  try {
+    const items = (await db.getGamesOnly()).rows;
+    // Update values and to have links
+    items.forEach((element) => {
+      element.link = `/games/${element.id}`;
+    });
+    res.status(200);
+    res.render("categories", { items: items, title: "Games" });
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 gameRouter.get("/:id", async (req, res) => {
-    const id = (req.params.id)
-    // Check if it is a number
-    const item = await db.getById(id)
-    res.render("itemDisplay",{title:"Game",item:item.rows[0]})
-    
-    // try {
-    //     const id = parseInt(req.params.id)
-    //     console.log(`Fetching item with id ${id}`);
-        
-    //     if (!isNaN(id)){
-    //         const item = await db.getById(id)
-    //         // res.send(item.rows)
-            
-    //         res.render("itemDisplay",{title:item.name,item:item})
+  const id = req.params.id;
+  // Check if it is a number
+  console.log(id);
 
-    //     }else{
-    //         console.log(`Error : Searching for NaN`);   
-    //     }
-        
-        
-    // } catch (error) {
-    //     console.error("Error fetching item:", error);
-    //     res.status(500).send("Internal Server Error");
-    // }
-})
+  if (!isNaN(id)) {
+    try {
+      const item = await db.getById(id);
+      const rows = item.rows[0];
 
+      if (rows) {
+        res.render("itemDisplay", { title: "Game", item: rows });
+      } else {
+        res.status(404).send("Game not found");
+      }
+    } catch (error) {
+      console.error("Error fetching item:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  } else {
+    res.redirect("/games");
+  }
+});
 
-module.exports = gameRouter
+module.exports = gameRouter;
