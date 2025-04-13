@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Css
 const assetPath = path.join(__dirname, "styles");
-afp.use(express.static(assetPath));
+app.use(express.static(assetPath));
 
 // The homepage with all items
 // Also handles searches

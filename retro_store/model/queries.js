@@ -57,7 +57,7 @@ async function getByName(name) {
 async function addItem(object) {
   try {
     console.log(`Adding ${object.name} to database`)
-    await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition,description) VALUES ($1,$2,$3,$4,$5,$6)", [
+    await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition,description) VALUES ($1,$2,$3,$4,$5,$6,$7)", [
       object.name,
       object.category_id,
       object.price,
@@ -66,9 +66,11 @@ async function addItem(object) {
       object.condition,
       object.description
     ])
+    return "success"
 
   } catch (error) {
     console.error(error);
+    return "fail"
   }
 
 }

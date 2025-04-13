@@ -14,6 +14,10 @@ searchRouter.get("/",async (req,res)=>{
         const rowCount = await items.rowCount
         console.log(rows);
         
+        rows.forEach(element => {
+          element["link"] = `/${element.category_id == 1 ? "games": "consoles"}/${element.id}` 
+        });
+        
         res.render("searchResults",{title:"Search",items:rows,searchParam:searchParam,rowCount})
 
     } catch (error) {

@@ -9,19 +9,8 @@ editRouter.get("/:object", (req, res) => {
   res.render("editItem", { title: "Update Item" });
 });
 
-function convertCategoryToId(obj) {
-  switch (obj.category) {
-    case "game":
-      return 1;
-    case "console":
-      return 2;
-    default:
-      break;
-  }
-}
-
 // Adding item
-editRouter.post("/", (req, res) => {
+editRouter.post("/", async (req, res) => {
   console.log(req.body);
 
   try {
@@ -36,9 +25,14 @@ editRouter.post("/", (req, res) => {
       condition: formObj.condition,
     };
 
-    db.addItem(newObj);
-    res.redirect("/");
-  } catch (error) { }
+    const resposne = await db.addItem(newObj);
+    if (response == "success") {
+      console.log(`Successfully added ${newObj.name} to the database`)
+      res.redirect("/");
+    }
+  } catch (error) {
+    console.log(`Failed to add ${newObj.name} to the database`)
+  }
 });
 
 module.exports = editRouter;
