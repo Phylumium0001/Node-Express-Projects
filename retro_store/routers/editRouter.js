@@ -4,7 +4,7 @@ const db = require("../model/queries");
 const editRouter = Router();
 
 // Editing Item
-editRouter.get("/:object", (req, res) => {
+editRouter.get("/:id", (req, res) => {
   console.log("Editing Item");
   res.render("editItem", { title: "Update Item" });
 });

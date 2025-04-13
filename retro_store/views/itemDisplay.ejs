@@ -5,8 +5,11 @@
   <p><%= item.quantity%></p>
   <h3>Description</h3>
   <p class="description"><%=item.description%><p>
-
-  <button><a href="">Edit Item</a></button>
+  
+  <% const editLink = `/edit/${item.id}`%>
+  <% const deleteLink = `/delete/${item.id}`%>
+  <button><a href=<%=editLink%>>Update Item</a></button>
+  <button><a href=<%=deleteLink%>>Delete Item</a></button>
 </div>
 
 <%- include('footer') %>
