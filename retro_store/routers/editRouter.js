@@ -4,9 +4,22 @@ const db = require("../model/queries");
 const editRouter = Router();
 
 // Editing Item
-editRouter.get("/:id", (req, res) => {
+editRouter.get("/:id", async (req, res) => {
   console.log("Editing Item");
-  res.render("editItem", { title: "Update Item" });
+  const id = req.params.id
+  if (!isNaN(id)) {
+    try {
+      // Get the item from database
+      const item = await db.getById(id)
+      res.render("editItem", { title: "Update Item", item: item });
+
+    } catch (err) {
+      console.error(`Failed to get id ${id} for editing`);
+    }
+  }
+  else {
+    console.log(`Invalid id : ${id}`)
+  }
 });
 
 // Adding item

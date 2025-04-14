@@ -6,7 +6,7 @@
   <h3>Description</h3>
   <p class="description"><%=item.description%><p>
   
-  <% const editLink = `/edit/${item.id}`%>
+  <% const editLink = `/update/${item.id}`%>
   <% const deleteLink = `/delete/${item.id}`%>
   <button><a href=<%=editLink%>>Update Item</a></button>
   <button><a href=<%=deleteLink%>>Delete Item</a></button>

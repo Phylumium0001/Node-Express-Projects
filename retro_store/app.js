@@ -7,7 +7,6 @@ const newItemRouter = require("./routers/newItemRouter");
 const searchRouter = require("./routers/searchRouter");
 const updateItemRouter = require("./routers/updateItemRouter");
 
-const editRouter = require("./routers/editRouter");
 const express = require("express");
 const app = express();
 
@@ -32,8 +31,8 @@ app.use("/games", gameRouter);
 app.use("/consoles", consoleRouter);
 
 // Edit specific item
-// app.use("/update",updateItemRouter)
-app.use("/update", editRouter);
+app.use("/update",updateItemRouter)
+// app.use("/update", updateRouter);
 
 // Delete Specific
 // app.use("/delete",deleteRoute)
