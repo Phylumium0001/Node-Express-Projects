@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "dev": "nodemon app"
+        "dev": "nodemon app",
+        "test": "jest"
     },
     "name": "retro_store",
     "version": "1.0.0",
@@ -15,5 +16,8 @@
         "pg": "^8.14.1"
     },
     "type": "commonjs",
-    "description": ""
+    "description": "",
+    "devDependencies": {
+        "jest": "^29.7.0"
+    }
 }

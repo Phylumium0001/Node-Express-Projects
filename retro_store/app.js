@@ -6,6 +6,7 @@ const consoleRouter = require("./routers/consoleRouter");
 const newItemRouter = require("./routers/newItemRouter");
 const searchRouter = require("./routers/searchRouter");
 const updateItemRouter = require("./routers/updateItemRouter");
+const deleteRouter = require("./routers/deleteRouter.js")
 
 const express = require("express");
 const app = express();
@@ -35,7 +36,7 @@ app.use("/update",updateItemRouter)
 // app.use("/update", updateRouter);
 
 // Delete Specific
-// app.use("/delete",deleteRoute)
+app.use("/delete",deleteRouter)
 
 // Add new item to the db
 app.use("/new", newItemRouter);

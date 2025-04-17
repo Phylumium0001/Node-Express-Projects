@@ -1,38 +1,48 @@
 <%- include('header') %>
     <div class="form-container">
-        <form action="/update" method="post" class="form-container">
+        <% const actionLink = `/update/${item.id}` %>
+        <form action=<%= actionLink %> method="post" class="form-container">
             <h3>Update Item</h3>
             
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" required value=<%= item.name %>>
+                <input type="text" name="name" id="name" required value="<%= item.name %>">
             </div>
             <br>
-            
+    
             <div class="form-group">
               <label for="category">Categories</label>
               <select name="category" id="Categories">
-                <option value="1">Games</option>
-                <option value="2">Consoles</option>
+                <% const categories = [
+                    {
+                        id:1,
+                        value:"Game"
+                    },{
+                        id:2,
+                        value:"Console"
+                    }
+                ] %>
+                <% categories.forEach(category => { %>
+                    <% if (category.id == item.category_id) { %>
+                        <option value="<%=category.id%>" selected><%=category.value%></option>
+                        <%}else{%>
+                            <option value="<%=category.id%>"><%=category.value%></option>
+                        <%}%>
+                    <% }) %> 
               </select>
-            </div>
+            </div>           
+
 
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="number" name="price" id="price" value=<%= item.price %>>
+                <input type="number" name="price" id="price" value="<%= item.price %>">
                 <br>
             </div>
             
             <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="number" name="quantity" id="quantity" value=<%= item.quantity %>>
+                <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>">
                 <br>
-            </div>
-
-            <div class="form-group">
-                <label for="platform">Platform</label>
-                <input type="text" name="platform" id="platform" value=<%= item.platform %>>
-                <br> 
             </div>
             
             <div class="form-group">
@@ -44,7 +54,7 @@
                     <option value="Nintendo">Nintendo</option>
                 </select>
             </div>
-
+            
             <div class="form-group">
                 <label for="Condition">Condition</label>
                 <select name="condition" id="conditions">
@@ -53,12 +63,11 @@
                 </select>
             </div>
 
-            <!-- <label>Condition: 
-                <select name="condition">
-                <option value="New">New</option>
-                <option value="Used">Used</option>
-                </select>
-            </label> -->
+            <!-- Description -->
+             <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" placeholder="Add description"><%= item.description %></textarea>
+             </div>
             <input type="submit" value="Update Item">
         </form>
     </div>

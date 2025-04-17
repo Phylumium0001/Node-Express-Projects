@@ -22,7 +22,7 @@ gameRouter.get("/", async (req, res) => {
 gameRouter.get("/:id", async (req, res) => {
   const id = req.params.id;
   // Check if it is a number
-  console.log(id);
+  // console.log(id);
 
   if (!isNaN(id)) {
     try {

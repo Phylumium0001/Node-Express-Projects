@@ -1,5 +1,13 @@
 const pool = require("./pool")
 
+async function deleteById(id) {
+  try {
+    console.log(`From DB : Deleting ${id}`)
+    await pool.query("DELETE FROM item WHERE id=$1",[id])  
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 async function getById(id) {
   try {
@@ -7,11 +15,10 @@ async function getById(id) {
     const parsedId = parseInt(id);
     const results = await pool.query("SELECT * FROM item WHERE id=$1", [parsedId])
     // console.log(results);
-
     return results
   }catch (error) {
   console.error(`Failed to get data : ${error}`);
-}
+  }
 }
 
 // Get 10 latest items
@@ -21,7 +28,6 @@ async function getLatestItemsLimited() {
     return await pool.query("SELECT * FROM item ORDER BY id ASC LIMIT 10")
   } catch (error) {
     console.log(error);
-
   }
 }
 
@@ -47,17 +53,15 @@ async function getByName(name) {
   try {
     console.log(`Searching for ${name}`);
     return await pool.query("SELECT * FROM item WHERE LOWER(name) LIKE $1", [`%${name}%`])
-
-
   } catch (error) {
     console.error(error);
-
   }
 }
+
 async function addItem(object) {
   try {
     console.log(`Adding ${object.name} to database`)
-    await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition,description) VALUES ($1,$2,$3,$4,$5,$6,$7)", [
+    const result = await pool.query("INSERT INTO item (name,category_id,price,quantity,platform,condition,description) VALUES ($1,$2,$3,$4,$5,$6,$7)", [
       object.name,
       object.category_id,
       object.price,
@@ -66,30 +70,35 @@ async function addItem(object) {
       object.condition,
       object.description
     ])
-    return "success"
 
+    if (result.rowCount === 0) {
+      console.log("No item found with the provided ID");
+      return "no item found"; // Or a different message for no rows updated
+    }
+    return "success"
   } catch (error) {
     console.error(error);
     return "fail"
   }
-
 }
 
 async function updateItem(object) {
   try {
     console.log(`Updating ${object.name} in database`)
-    pool.query("UPDATE item SET name=$1, category_id=$2, price=$3, quantity=$4, platform=$5, condition=$6 WHERE id = $7", [
+    await pool.query("UPDATE item SET name=$1, category_id=$2, price=$3, quantity=$4, platform=$5, condition=$6,description=$7 WHERE id = $8", [
       object.name,
       object.category_id,
       object.price,
       object.quantity,
       object.platform,
       object.condition,
+      object.description,
       object.id
     ])
+    return "success"
   } catch (error) {
     console.error(error);
-
+    return "fail"
   }
 }
 
@@ -110,6 +119,7 @@ async function updateItem(object) {
 // getByName("r")
 
 // getById(11)
+// deleteById(92)
 
 module.exports = {
   getLatestItemsLimited,
@@ -118,5 +128,6 @@ module.exports = {
   addItem,
   updateItem,
   getByName,
-  getById
+  getById,
+  deleteById
 }

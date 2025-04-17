@@ -1,26 +1,6 @@
-// const {Router} = require("express")
-// const db = require("../model/queries")
-//
-// const updateItemRouter = Router()
-//
-// updateItemRouter.get("/:id", async (req,res)=>{
-//     console.log(`Fetching item`);
-//     const id = Number(req.params.id)
-//     console.log(id);
-//    try {
-//     const item = await db.getById(id).rows
-//     res.render("updateItem",{title:"Update Item",item:item})
-//
-//    } catch (error) {
-//     console.error(error);
-//    } 
-//
-// })
-//
-// module.exports = updateItemRouter
-
 const { Router } = require("express");
 const db = require("../model/queries");
+const { waitingCount } = require("../model/pool");
 
 const updateRouter = Router();
 
@@ -49,29 +29,34 @@ updateRouter.get("/:id", async (req, res) => {
   }
 });
 
-// Adding item
-updateRouter.post("/", async (req, res) => {
-  console.log(req.body);
 
+// Adding item
+updateRouter.post("/:id", async (req, res) => {
+  console.log(req.params)
   try {
     const formObj = req.body;
 
     const newObj = {
+      id: req.params.id,
       name: formObj.name,
-      category_id: formObj.category_id,
+      category_id: formObj.category,
       price: Number(formObj.price),
       quantity: Number(formObj.quantity),
       platform: formObj.platform,
       condition: formObj.condition,
+      description:formObj.description
     };
+    console.log("New Object")
+    console.log(newObj)
 
-    const resposne = await db.addItem(newObj);
+    const response = await db.updateItem(newObj);
+
     if (response == "success") {
-      console.log(`Successfully added ${newObj.name} to the database`)
+      console.log(`Successfully updated ${newObj.name} to the database`)
       res.redirect("/");
     }
   } catch (error) {
-    console.log(`Failed to add ${req.body.name} to the database`)
+    console.log(`Failed to update ${req.body.name} to the database`)
   }
 });
 
