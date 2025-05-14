@@ -8,6 +8,7 @@ async function createMessage(obj) {
       obj.description,
       obj.link
     ])  
+    return '1'
   } catch (err) {
     console.error(err);
   }
@@ -15,7 +16,7 @@ async function createMessage(obj) {
 
 async function getAllMessages() {
   try {
-    const results = db.query("SELECT * FROM messages")  
+    const results = await db.query("SELECT * FROM messages;")  
     return results
   } catch (error) {
     console.error(error);

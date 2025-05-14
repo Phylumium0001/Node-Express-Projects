@@ -1,7 +1,8 @@
 <%-include("../fragments/header") %>
 <main>
     <h1>Welcome, todays updates: </h1> 
-    <div class="items">
+    <%if (messages){%>
+      <div class="items">
         <% messages.forEach(message => { %>
             <div class="item">
                 <a href=<%= message.path %>>
@@ -12,6 +13,10 @@
                 
             </div>
         <% }) %>
-    </div>
+      </div>
+    <%}else{%>
+      <h2>No messages Found<h2>
+    <%}%>
+    
 </main>
 <%- include('../fragments/footer') %>
