@@ -2,7 +2,7 @@ const express = require("express")
 const expressSession = require("express-session")
 const pg = require("pg")
 const pgSession = require("connect-pg-simple")(expressSession)
-const crypto = require("crypto")
+const {v4} = require("uuid")
 const app = express()
 
 const pgPool = new pg.Pool({
@@ -29,7 +29,7 @@ app.use(express.urlencoded())
 app.use(expressSession({
   genid: function(req) {
     // return crypto.randomUUID();
-    return "FUUUUUUUUUCCCCCCCK"
+    return v4()
     // return genuuid() // use UUIDs for session IDs
   },
   store:new pgSession({
