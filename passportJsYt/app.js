@@ -1,4 +1,5 @@
 const express = require("express")
+const routes = require("./routes/routes")
 
 const app = express()
 
@@ -37,6 +38,7 @@ app.get("/",routerMiddleware,(req, res,next)=>{
 app.get("/new",(req,res,next)=>{
   res.send("What are you creating")
 })
+app.use(routes)
 
 app.listen(5000, ()=>{
   console.log(`Server running on port 5000`)
