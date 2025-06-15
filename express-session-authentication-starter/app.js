@@ -1,13 +1,14 @@
 const express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const session = require('express-session');
 var passport = require('passport');
 var crypto = require('crypto');
 var routes = require('./routes');
 const connection = require('./config/database');
+const pool = require("./config/database_pg").pool
 
 // Package documentation - https://www.npmjs.com/package/connect-mongo
-const MongoStore = require('connect-mongo')(session);
+// const MongoStore = require('connect-mongo')(session);
 
 // Pg store
 const pgStore = require("connect-pg-simple")(session)
@@ -30,8 +31,20 @@ app.use(express.urlencoded({extended: true}));
 
 
 /**
- * -------------- SESSION SETUP ----------------
+ * -------------- SESSION SETUP ----------------(
  */
+app.use(session({
+    secret: "naught dog",
+    store: new pgStore({
+        pool:pool,
+        createTableIfMissing:true,
+    }),
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        maxAge : 5 * 60 * 1000, // 5 mins - 5 min * seconds * milliseconds
+    }
+}));
 
 // TODO
 

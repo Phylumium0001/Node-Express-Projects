@@ -1,18 +1,33 @@
 const router = require('express').Router();
 const passport = require('passport');
-const passwordUtils = require('../lib/passwordUtils');
+const genPassword = require('../lib/passwordUtils').genPassword
 const connection = require('../config/database');
-const User = connection.models.User;
+const createUser = require("../config/database_pg").createUser
+// const User = connection.models.User;
 
+const {v4} = require("uuid")
 /**
  * -------------- POST ROUTES ----------------
  */
 
  // TODO
- router.post('/login', (req, res, next) => {});
+ // The passport.authenticate uses the function we defined in passport (verifyCallback)
+ router.post('/login',passport.authenticate('local',{ successRedirect: '/login-success', failureRedirect: '/login-failure' }))
 
  // TODO
- router.post('/register', (req, res, next) => {});
+ router.post('/register', (req, res, next) => {
+    // Adds new user
+    const saltHash = genPassword(req.body.password);
+
+    const salt = saltHash.salt;
+    const hash = saltHash.hash;
+    const username = req.body.username
+    
+    // Create a new user
+    createUser(v4(),username, hash, salt)
+
+    res.redirect("/login")
+ });
 
 
  /**
