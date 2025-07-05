@@ -2,7 +2,6 @@ const express = require("express")
 const crypto = require("crypto")
 
 const expressSessions = require("express-session")
-
 const pgSessions = require("connect-pg-simple")(expressSessions)
 const pg = require("pg")
 

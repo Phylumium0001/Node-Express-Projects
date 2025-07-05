@@ -1,0 +1,38 @@
+  </main>
+  
+  <script>
+    // Membership Activation Modal
+    const membershipModal = document.getElementById('membership-modal');
+    const activateLink = document.getElementById('activate-membership');
+    const modalClose = document.querySelector('.modal-close');
+    
+    if (activateLink) {
+      activateLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        membershipModal.style.display = 'flex';
+      });
+    }
+    
+    if (modalClose) {
+      modalClose.addEventListener('click', () => {
+        membershipModal.style.display = 'none';
+      });
+    }
+    
+    // Close modal when clicking outside content
+    membershipModal.addEventListener('click', (e) => {
+      if (e.target === membershipModal) {
+        membershipModal.style.display = 'none';
+      }
+    });
+    
+    // Auto-focus textarea when form is shown
+    <% if (currentUser) { %>
+      document.addEventListener('DOMContentLoaded', () => {
+        const textarea = document.querySelector('textarea');
+        if (textarea) textarea.focus();
+      });
+    <% } %>
+  </script>
+</body>
+</html>

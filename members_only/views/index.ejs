@@ -1,0 +1,136 @@
+<%- include('partials/header', { title: 'Message Board' }) -%>
+
+<div class="message-board">
+  <div class="board-header">
+    <h2 class="board-title">Encrypted Message Board</h2>
+    <div class="board-stats">
+      <span><%= messages.length %> messages</span>
+      <span><%= memberCount %> members</span>
+    </div>
+  </div>
+
+  <!-- Message Display Section -->
+  <div class="message-container">
+    <% if (messages.length > 0) { %>
+      <div class="message-list">
+        <% messages.forEach(message => { %>
+          <div class="message-card">
+            <div class="message-content">
+              <%= message.content %>
+            </div>
+            
+            <div class="message-meta">
+              <div class="message-date">
+                <%= message.timestamp.toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'short', 
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                }) %>
+              </div>
+              
+              <% if (currentUser && currentUser.ismember) { %>
+                <div class="author-badge">
+                  @<%= message.firstname + message.lastname %>
+                </div>
+              <% } else { %>
+                <div class="author-badge">
+                  🔒 Anonymous
+                </div>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <p>No messages yet. Be the first to break the silence!</p>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Post Form (for logged-in users) -->
+  <% if (currentUser) { %>
+    <div class="post-form">
+      <form action="/messages" method="POST">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input 
+            type="text" 
+            name="title" 
+            id="title" 
+            placeholder="Title"
+            required/>
+        </div>
+        <div class="form-group">
+          
+
+          <label for="content">Your Encrypted Message:</label>
+          <textarea 
+            id="content" 
+            name="content" 
+            required
+            placeholder="Type your secret message here..."
+          ></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+          </svg>
+          Post Message
+        </button>
+      </form>
+      
+      <!-- Membership Prompt -->
+      <% if (!currentUser.isMember) { %>
+        <div class="membership-prompt">
+          <p>Want to see who wrote these messages? 
+            <a href="/activate" id="activate-membership">Activate your membership</a>
+          </p>
+        </div>
+      <% } %>
+    </div>
+  <% } else { %>
+    <div class="auth-prompt">
+      <p>
+        <a href="/login">Decrypt access</a> to post messages
+        <% if (memberCount > 0) { %>
+          or <a href="/signup">get clearance</a> to see who wrote these
+        <% } %>
+      </p>
+    </div>
+  <% } %>
+</div>
+
+<!-- Membership Modal -->
+<div id="membership-modal" class="modal-backdrop" style="display: none;">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <h3 class="modal-title">Activate Membership</h3>
+    
+    <form id="membership-form" action="/membership/activate" method="POST">
+      <div class="form-group">
+        <label for="membership-code">Enter Secret Cipher Code:</label>
+        <input 
+          type="text" 
+          id="membership-code" 
+          name="code" 
+          required
+          class="input-group"
+          placeholder="Top secret code..."
+        >
+      </div>
+      
+      <button type="submit" class="submit-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        Decrypt Membership
+      </button>
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer') -%>

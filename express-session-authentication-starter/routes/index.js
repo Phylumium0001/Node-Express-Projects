@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const genPassword = require('../lib/passwordUtils').genPassword
-const connection = require('../config/database');
 const createUser = require("../config/database_pg").createUser
-// const User = connection.models.User;
 
 const {v4} = require("uuid")
 /**
@@ -54,8 +52,9 @@ router.get('/login', (req, res, next) => {
 router.get('/register', (req, res, next) => {
 
     const form = '<h1>Register Page</h1><form method="post" action="register">\
-                    Enter Username:<br><input type="text" name="username">\
-                    <br>Enter Password:<br><input type="password" name="password">\
+
+                    Enter Username:<br><input type="text" name="username" required>\
+                    <br>Enter Password:<br><input type="password" name="password" required>\
                     <br><br><input type="submit" value="Submit"></form>';
 
     res.send(form);

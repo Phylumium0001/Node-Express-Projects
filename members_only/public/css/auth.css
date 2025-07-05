@@ -1,0 +1,114 @@
+.auth-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.auth-form {
+  padding: 1.5rem 0;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.input-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f8f1e6;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 20px 14px 45px;
+  border: 2px solid rgba(244, 162, 97, 0.3);
+  border-radius: 8px;
+  background: rgba(10, 30, 50, 0.7);
+  color: #f8f1e6;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #f4a261;
+  box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.2);
+  outline: none;
+}
+
+.input-group svg {
+  position: absolute;
+  left: 15px;
+  bottom: 14px;
+  color: #f4a261;
+  opacity: 0.8;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.decrypt-btn {
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+  color: #0d3b66;
+}
+
+.encrypt-btn {
+  background: linear-gradient(135deg, #2a9d8f 0%, #1d7a6b 100%);
+  color: #f8f1e6;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(0,0,0,0.25);
+}
+
+.auth-btn:active {
+  transform: translateY(0);
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 2rem;
+  color: #a3b1c6;
+  font-size: 0.95rem;
+}
+
+.auth-links a {
+  color: #f4a261;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.alert {
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.error {
+  background: rgba(231, 111, 81, 0.2);
+  border: 1px solid #e76f51;
+  color: #f8c9bb;
+}

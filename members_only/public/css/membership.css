@@ -1,0 +1,100 @@
+/* MEMBERSHIP ACTIVATION STYLES */
+.membership-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cipher-lock {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #f4a261;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.activation-card {
+  background: rgba(13, 59, 102, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 162, 97, 0.3);
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.activation-title {
+  color: #f4a261;
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.activation-subtitle {
+  color: #a3b1c6;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.membership-info {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(244, 162, 97, 0.2);
+}
+
+.membership-info h3 {
+  color: #f4a261;
+  margin-bottom: 1rem;
+}
+
+.membership-info ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+}
+
+.membership-info li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #f8f1e6;
+}
+
+.membership-info li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2a9d8f;
+  font-weight: bold;
+}
+
+.hint-box {
+  background: rgba(10, 30, 50, 0.5);
+  border-left: 3px solid #2a9d8f;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  color: #a3b1c6;
+}
+
+.hint-box p {
+  margin: 0.5rem 0;
+}
+
+.success {
+  background: rgba(42, 157, 143, 0.2);
+  border: 1px solid #2a9d8f;
+  color: #a3f0e0;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}

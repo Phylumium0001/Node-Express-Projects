@@ -1,0 +1,72 @@
+<%- include('../partials/header', { title: 'Activate Membership' }) -%>
+
+<div class="membership-container">
+  <div class="cipher-lock">
+    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      <circle cx="12" cy="15" r="1" fill="currentColor" id="lock-dot" />
+    </svg>
+  </div>
+  
+  <div class="activation-card">
+    <h2 class="activation-title">🔐 Decrypt Your Membership</h2>
+    <p class="activation-subtitle">Enter the secret cipher to unlock full privileges</p>
+    
+    <% if (error) { %>
+      <div class="alert error">
+        <%= error %>
+      </div>
+    <% } %>
+    
+    <% if (success) { %>
+      <div class="alert success">
+        <%= success %>
+      </div>
+    <% } %>
+    
+    <form action="/membership/activate" method="POST">
+      <div class="input-group">
+        <label for="passcode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Secret Passcode
+        </label>
+        <input 
+          type="password" 
+          id="passcode" 
+          name="passcode" 
+          required
+          autocomplete="off"
+          placeholder="Enter top-secret cipher"
+          autofocus
+        >
+      </div>
+      
+      <button type="submit" class="auth-btn decrypt-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1-8.5 15a12 12 0 0 1-8.5-15a12 12 0 0 0 8.5-3"></path>
+        </svg>
+        DECRYPT MEMBERSHIP
+      </button>
+    </form>
+    
+    <div class="membership-info">
+      <h3>Membership Benefits</h3>
+      <ul>
+        <li>See who authored each message</li>
+        <li>Access to exclusive channels</li>
+        <li>Early preview of new features</li>
+        <li>Special member badge</li>
+      </ul>
+      
+      <div class="hint-box">
+        <p><strong>Where to find your passcode:</strong></p>
+        <p>Check your welcome email or contact the board administrator</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- // include('../partials/footer') -%>

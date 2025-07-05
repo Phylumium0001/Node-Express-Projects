@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cipher Board - <%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/membership.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <div class="header-brand">
+        <h1>CIPHER BOARD</h1>
+        <p>Decode. Post. Belong.</p>
+      </div>
+      
+      <nav class="main-nav">
+        <% if (currentUser) { %>
+          <div class="user-greeting">
+            <span>Welcome, <%= currentUser.firstname %></span>
+            <% if (currentUser.ismember) { %>
+              <span class="member-badge">🔓 Member</span>
+            <% } else { %>
+              <span class="member-badge">🔒 Guest</span>
+            <% } %>
+          </div>
+          <a href="/logout" class="nav-link">Sign Out</a>
+        <% } else { %>
+          <a href="/login" class="nav-link">Decrypt Access</a>
+          <a href="/signup" class="nav-link">Get Clearance</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container">

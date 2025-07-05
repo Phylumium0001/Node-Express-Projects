@@ -1,0 +1,178 @@
+:root {
+  --dark-teal: #0d3b66;
+  --gold: #f4a261;
+  --parchment: #f8f1e6;
+  --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1a2a4c 0%, #0d3b66 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.cipher-brand {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cipher-brand h1 {
+  font-family: 'Courier Prime', monospace;
+  color: var(--gold);
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(244, 162, 97, 0.5);
+}
+
+.cipher-brand p {
+  color: var(--parchment);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.auth-container {
+  background: rgba(13, 59, 102, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 162, 97, 0.3);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 450px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle, 
+    transparent 20%, 
+    rgba(244, 162, 97, 0.1) 45%, 
+    transparent 70%
+  );
+  animation: rotate 15s infinite linear;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+/* Main */
+/* Add to existing main.css */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-header {
+  background: rgba(13, 59, 102, 0.95);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(244, 162, 97, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-brand h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.header-brand p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f8f1e6;
+}
+
+.member-badge {
+  background: rgba(244, 162, 97, 0.2);
+  color: #f4a261;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.nav-link {
+  color: #a3b1c6;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #f4a261;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #a3b1c6;
+  font-style: italic;
+}
+
+.auth-prompt {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(13, 59, 102, 0.6);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.auth-prompt a {
+  color: #f4a261;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-prompt a:hover {
+  text-decoration: underline;
+}
+
+
+/* Add this to your existing main.css */
+.membership-container .input-group input {
+  padding-left: 3rem;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+.membership-container .input-group svg {
+  left: 1rem;
+}
